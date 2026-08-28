@@ -93,7 +93,7 @@ ul.ref li:before{content:"";position:absolute;left:0;top:20px;width:12px;height:
 <div id="app"></div>
 
 <script>
-var APP_VERSION = "1.1";
+var APP_VERSION = "1.2";
 var LSKEY = "cmo-vector-state";   /* свой ключ: не пересекается с Реактором на том же домене */
 
 /* ─────────── КОМПЕТЕНЦИИ ─────────── */
@@ -438,7 +438,8 @@ function load(){
 }
 function save(){ try { localStorage.setItem(LSKEY, JSON.stringify(state)); } catch(e){} }
 var state = load();
-var ui = { tab:"today", card:null, bossOpen:false, bossText:"", showRef:false, addReward:false };
+var ui = { tab:"today", card:null, bossOpen:false, bossText:"", showRef:false, addReward:false,
+           started:false, retake:false };
 
 /* ─────────── ПРОГРЕСС И УРОВНИ ─────────── */
 function balance(){ return state.xp - state.spent; }
@@ -480,6 +481,7 @@ function finishQuiz(){
   COMPS.forEach(function(c){ sc[c.id] = Math.round((sum[c.id] / cnt[c.id]) * 10) / 10; });
   if (state.scores) state.quizHistory.push({ d:state.quizAt, scores:state.scores });
   state.scores = sc; state.quizAt = today(); state.answers = []; state.qi = 0;
+  ui.started = false; ui.retake = false;
   addXP(50, "срез компетенций пройден");
   giveBadge("start", "Точка отсчёта");
   if (state.quizHistory.length) giveBadge("remeasure", "Замер прогресса");
@@ -487,7 +489,7 @@ function finishQuiz(){
 }
 function restartQuiz(){
   if (!confirm("Пройти срез заново? Текущие оценки уйдут в историю, рост от практики обнулится.")) return;
-  state.answers = []; state.qi = 0; state.practice = {};
+  state.answers = []; state.qi = 0; state.practice = {}; ui.retake = true;
   save(); render();
 }
 
@@ -683,7 +685,7 @@ function screenIntro(){
     '<div class="rule"></div>' +
     '<div style="padding-top:22px"><div class="mid">40 ситуаций.<br/>8 компетенций.<br/>15 минут.</div>' +
     '<p class="body muted" style="margin:18px 0 0">Без самооценки: только выбор действия. На выходе — карта сильных и провальных зон и три приоритета на квартал.</p>' +
-    '<button class="primary wide" onclick="state.qi=0;state.answers=[];save();render()">Начать срез</button></div>' +
+    '<button class="primary wide" onclick="ui.started=true;state.qi=0;state.answers=[];save();render()">Начать срез</button></div>' +
     '<div class="sec"><h2>Как устроено</h2>' +
     '<div class="kv"><span>Каждый день</span><span>3 карточки по слабым зонам</span></div>' +
     '<div class="kv"><span>XP начисляется</span><span>за применение, не за чтение</span></div>' +
@@ -880,8 +882,9 @@ function tabs(){
 
 function render(){
   var h;
-  if (!state.scores && state.qi === 0 && !state.answers.length) h = screenIntro();
-  else if (!state.scores) h = screenQuiz();
+  var inQuiz = ui.retake || (!state.scores && (ui.started || state.qi > 0 || state.answers.length > 0));
+  if (inQuiz) h = screenQuiz();
+  else if (!state.scores) h = screenIntro();
   else {
     newDayIfNeeded();
     h = ui.tab === "map" ? tabMap() : ui.tab === "rewards" ? tabRewards() :
