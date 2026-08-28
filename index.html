@@ -1,99 +1,99 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="apple-mobile-web-app-title" content="Вектор"/>
-<meta name="theme-color" content="#0B0D12"/>
+<meta name="theme-color" content="#FFFFFF"/>
 <title>ВЕКТОР — путь к CMO</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0D12'/%3E%3Cpath d='M14 46 L32 16 L50 46' stroke='%23FFB020' stroke-width='6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFFFFF'/%3E%3Cpath d='M14 46 L32 16 L50 46' stroke='%23D4AF37' stroke-width='6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E"/>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:#090B10;color:#EEF1F8;
-     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,system-ui,sans-serif;
-     padding:0 0 104px;line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased;
-     background-image:radial-gradient(900px 420px at 50% -180px,rgba(255,176,32,.13),transparent 70%),
-                      radial-gradient(700px 380px at 100% 12%,rgba(124,107,255,.10),transparent 70%);
-     background-attachment:fixed}
-#app{max-width:620px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 17px 0}
+body{margin:0;background:#FFFFFF;color:#0E0E0E;
+     font-family:"Helvetica Neue",Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+     padding:0 0 92px;line-height:1.5;font-size:15.5px;-webkit-font-smoothing:antialiased}
+#app{max-width:640px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top)) 22px 0}
 h1,h2,h3{margin:0;font-weight:700}
-.eyebrow{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#66718A;font-weight:600}
-.logo{font-size:33px;font-weight:800;letter-spacing:-.01em;margin:5px 0 18px;line-height:1}
-.logo span{background:linear-gradient(100deg,#FFB020,#FF6B4A);-webkit-background-clip:text;
-           -webkit-text-fill-color:transparent;background-clip:text}
-.card{background:linear-gradient(180deg,rgba(23,28,39,.92),rgba(17,21,30,.92));
-      border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:18px;margin-bottom:14px;
-      box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 12px 32px -22px rgba(0,0,0,.9)}
-.card.tight{padding:14px 15px;border-radius:16px}
-.card.flat{background:#0E1219;box-shadow:none}
-h2{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#7C879E;margin-bottom:14px;font-weight:600}
-.muted{color:#8D97AC}
-.small{font-size:12.5px;line-height:1.45}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-button{font-family:inherit;font-size:14.5px;color:#EEF1F8;background:rgba(255,255,255,.05);
-       border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 15px;cursor:pointer;
-       transition:transform .12s,border-color .18s,background .18s}
-button:active{transform:scale(.975)}
-button.primary{background:linear-gradient(100deg,#FFB020,#FF7A3D);border:none;color:#14171E;
-               font-weight:750;letter-spacing:.01em;box-shadow:0 10px 26px -14px rgba(255,150,40,.9)}
-button.ghost{background:transparent;border-color:rgba(255,255,255,.1);color:#8D97AC}
-button.wide{width:100%;display:block;margin-top:12px}
-button:disabled{opacity:.4;cursor:default;box-shadow:none}
-.bar{height:7px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
-.bar > i{display:block;height:100%;border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1);
-         background:linear-gradient(90deg,#FFB020,#FF6B4A)}
-.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin-bottom:10px;
-     padding:14px 15px;line-height:1.42;font-size:14.5px;background:rgba(255,255,255,.032);
-     border:1px solid rgba(255,255,255,.07);border-radius:15px}
-.opt:hover{border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.05)}
-.opt b{flex:none;width:23px;height:23px;border-radius:8px;background:rgba(255,255,255,.07);
-       display:grid;place-items:center;font-size:11px;color:#8D97AC;font-weight:700;margin-top:1px}
-.opt:hover b{background:#FFB020;color:#14171E}
-.pill{display:inline-block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
-      padding:5px 10px;border-radius:999px;border:1px solid;opacity:.95}
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;
-      padding:9px 6px calc(9px + env(safe-area-inset-bottom));
-      background:rgba(11,14,20,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-      border-top:1px solid rgba(255,255,255,.07)}
-.tabs button{flex:1;background:none;border:none;color:#5A6478;font-size:9.5px;letter-spacing:.11em;
-             text-transform:uppercase;padding:5px 2px;font-weight:600;border-radius:0}
-.tabs button.on{color:#FFB020}
-.tabs svg{display:block;margin:0 auto 4px;width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;
-          stroke-linecap:round;stroke-linejoin:round}
-.kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;
-    border-bottom:1px solid rgba(255,255,255,.055);font-size:14px}
+.eyebrow{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600}
+.logo{font-size:46px;font-weight:700;letter-spacing:-.035em;line-height:.92;margin:8px 0 0;
+      display:flex;align-items:flex-start;gap:6px}
+.logo svg{width:26px;height:26px;flex:none;margin-top:4px}
+.logo.huge{font-size:64px;letter-spacing:-.045em}
+.logo.huge svg{width:36px;height:36px;margin-top:6px}
+.rule{border-top:1px solid #0E0E0E;margin:20px 0 0}
+.hair{border-top:1px solid #E4E1DA;margin:18px 0}
+.sec{padding:22px 0 0;border-top:1px solid #E4E1DA;margin-top:22px}
+.sec.top{border-top:1px solid #0E0E0E}
+h2{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;margin-bottom:16px;font-weight:600}
+.muted{color:#767676}
+.small{font-size:12.5px;line-height:1.5}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.big{font-size:46px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.mid{font-size:26px;font-weight:700;letter-spacing:-.025em;line-height:1.1}
+.gold{color:#8C6D1F}
+button{font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+       color:#0E0E0E;background:#FFFFFF;border:1px solid #0E0E0E;border-radius:0;padding:15px 18px;
+       cursor:pointer;transition:background .15s,color .15s}
+button:active{opacity:.75}
+button.primary{background:#D4AF37;border-color:#D4AF37;color:#0E0E0E}
+button.dark{background:#0E0E0E;color:#FFFFFF}
+button.ghost{border-color:#D8D5CE;color:#767676}
+button.wide{width:100%;display:block;margin-top:16px}
+button:disabled{opacity:.3;cursor:default}
+.bar{height:3px;background:#E4E1DA;overflow:hidden}
+.bar > i{display:block;height:100%;background:#D4AF37;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.stairs{display:flex;align-items:flex-end;gap:5px;height:76px;margin:20px 0 16px;
+        border-bottom:1px solid #0E0E0E;padding-bottom:0}
+.stairs div{flex:1;background:#EFEDE7;position:relative}
+.stairs div.on{background:#D4AF37}
+.stairs div.cur{background:#0E0E0E}
+.opt{display:flex;gap:16px;align-items:flex-start;width:100%;text-align:left;padding:17px 2px;
+     font-size:16px;line-height:1.38;letter-spacing:0;text-transform:none;font-weight:400;
+     border:none;border-bottom:1px solid #E4E1DA;background:none}
+.opt:first-of-type{border-top:1px solid #E4E1DA}
+.opt b{flex:none;font-size:11px;letter-spacing:.1em;color:#8C6D1F;font-weight:700;margin-top:4px;width:14px}
+.opt:hover{background:#FBF7EC}
+.opt:hover b{color:#0E0E0E}
+.tag{display:inline-block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#8C6D1F}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:#FFFFFF;
+      border-top:1px solid #0E0E0E;padding-bottom:env(safe-area-inset-bottom)}
+.tabs button{flex:1;border:none;background:none;padding:15px 2px 14px;font-size:9.5px;letter-spacing:.16em;
+             color:#A0A0A0;border-top:3px solid transparent;margin-top:-1px}
+.tabs button.on{color:#0E0E0E;border-top-color:#D4AF37}
+.kv{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:14px 0;
+    border-bottom:1px solid #E4E1DA;font-size:15px}
 .kv:last-child{border-bottom:none}
-.kv:first-child{padding-top:0}
-.badge{display:inline-block;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
-       border-radius:12px;padding:9px 12px;margin:0 7px 7px 0;font-size:12px}
-.badge.on{border-color:rgba(255,176,32,.45);background:rgba(255,176,32,.09);color:#FFD48A}
-.badge.off{opacity:.28}
-textarea{width:100%;min-height:160px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.09);
-         border-radius:14px;color:#EEF1F8;font-family:inherit;font-size:14.5px;padding:13px;resize:vertical}
-textarea:focus,input:focus{outline:none;border-color:rgba(255,176,32,.55)}
-input[type=text],input[type=number]{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.09);
-         border-radius:12px;color:#EEF1F8;font-family:inherit;font-size:14.5px;padding:12px;width:100%}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:104px;
-       background:linear-gradient(100deg,#FFB020,#FF7A3D);color:#14171E;font-weight:750;font-size:13.5px;
-       padding:12px 20px;border-radius:14px;z-index:40;box-shadow:0 14px 40px -12px rgba(255,150,40,.6);
-       animation:pop .28s cubic-bezier(.2,.9,.3,1.2)}
-@keyframes pop{from{opacity:0;transform:translate(-50%,14px) scale(.94)}}
-.lvl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#FFC65C;font-weight:750}
-.qtext{font-size:18px;line-height:1.36;margin-bottom:20px;font-weight:600;letter-spacing:-.01em}
-.grow{font-size:11.5px;color:#3DFFC5;font-weight:600}
-.dim{color:#5A6478}
-hr{border:none;border-top:1px solid rgba(255,255,255,.06);margin:16px 0}
-.ring{flex:none}
-.act{background:rgba(0,0,0,.3);border:1px dashed rgba(255,176,32,.35);border-radius:14px;padding:13px 14px}
-.cardTitle{font-size:19px;line-height:1.24;letter-spacing:-.01em;margin:11px 0 9px;font-weight:750}
-.fade{animation:fade .3s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}}
+.stat{flex:1}
+.stat .n{font-size:34px;font-weight:700;letter-spacing:-.035em;line-height:1}
+.stat .l{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A8A8A;margin-top:6px;font-weight:600}
+.act{border-left:3px solid #D4AF37;background:#FBF7EC;padding:15px 16px;margin-top:18px}
+.badge{display:inline-block;border:1px solid #E4E1DA;padding:9px 12px;margin:0 6px 6px 0;font-size:11.5px;color:#A0A0A0}
+.badge.on{border-color:#D4AF37;color:#0E0E0E;background:#FBF7EC;font-weight:600}
+textarea{width:100%;min-height:170px;background:#FFFFFF;border:1px solid #0E0E0E;border-radius:0;
+         color:#0E0E0E;font-family:inherit;font-size:16px;padding:15px;resize:vertical;margin-top:6px}
+textarea:focus,input:focus{outline:none;border-color:#D4AF37}
+input[type=text],input[type=number]{background:#FFFFFF;border:1px solid #0E0E0E;border-radius:0;
+         color:#0E0E0E;font-family:inherit;font-size:16px;padding:14px;width:100%}
+.toast{position:fixed;left:0;right:0;bottom:0;background:#0E0E0E;color:#FFFFFF;font-weight:700;
+       font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:20px 22px;z-index:40;
+       animation:up .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(100%)}}
+.qnum{font-size:56px;font-weight:700;letter-spacing:-.05em;line-height:.9}
+.qtext{font-size:23px;line-height:1.22;margin:22px 0 26px;font-weight:700;letter-spacing:-.025em}
+.cardTitle{font-size:29px;line-height:1.08;letter-spacing:-.035em;margin:14px 0 14px;font-weight:700}
+.body{font-size:16px;line-height:1.55;color:#242424}
+.num{font-size:38px;font-weight:700;letter-spacing:-.04em;line-height:1;min-width:52px}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+ul.ref{margin:0;padding-left:0;list-style:none}
+ul.ref li{padding:13px 0 13px 26px;border-bottom:1px solid #E4E1DA;position:relative;font-size:15px;line-height:1.45}
+ul.ref li:before{content:"";position:absolute;left:0;top:20px;width:12px;height:1px;background:#D4AF37}
 </style>
 
 <div id="app"></div>
 
 <script>
-var APP_VERSION = "1.0";
+var APP_VERSION = "1.1";
 var LSKEY = "cmo-vector-state";   /* свой ключ: не пересекается с Реактором на том же домене */
 
 /* ─────────── КОМПЕТЕНЦИИ ─────────── */
@@ -609,6 +609,7 @@ function delReward(id){
 }
 
 /* ─────────── ИНТЕРФЕЙС ─────────── */
+var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.6" stroke-linecap="square"><path d="M5 19L19 5"/><path d="M9 5h10v10"/></svg>';
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function toast(t){
   var d = document.createElement("div");
@@ -616,173 +617,187 @@ function toast(t){
   document.body.appendChild(d);
   setTimeout(function(){ if (d.parentNode) d.parentNode.removeChild(d); }, 2600);
 }
+
+/* восхождение по уровням — пять ступеней, пройденные золотом */
+function stairs(){
+  var idx = levelIdx(), hs = [20, 34, 48, 62, 76], h = '<div class="stairs">';
+  LEVELS.forEach(function(l, i){
+    h += '<div class="' + (i < idx ? "on" : i === idx ? "cur" : "") + '" style="height:' + hs[i] + 'px"></div>';
+  });
+  return h + '</div>';
+}
+
 function radar(){
-  var cx = 140, cy = 138, R = 104, n = COMPS.length, out = "";
-  out += '<defs><radialGradient id="rg" cx="50%" cy="50%"><stop offset="0%" stop-color="#FFB020" stop-opacity=".38"/>' +
-         '<stop offset="100%" stop-color="#FF6B4A" stop-opacity=".14"/></radialGradient></defs>';
+  var cx = 148, cy = 146, R = 116, n = COMPS.length, out = "";
   for (var g = 1; g <= 5; g++) {
     var pts = [];
     for (var i = 0; i < n; i++) {
       var a = -Math.PI/2 + i * 2*Math.PI/n, r = R * g/5;
       pts.push((cx + r*Math.cos(a)).toFixed(1) + "," + (cy + r*Math.sin(a)).toFixed(1));
     }
-    out += '<polygon points="' + pts.join(" ") + '" fill="none" stroke="' + (g === 4 ? "rgba(255,176,32,.32)" : "rgba(255,255,255,.07)") +
-           '" stroke-width="1"' + (g === 4 ? ' stroke-dasharray="3 4"' : '') + '/>';
+    out += '<polygon points="' + pts.join(" ") + '" fill="none" stroke="' + (g === 4 ? "#0E0E0E" : "#E4E1DA") +
+           '" stroke-width="1"' + (g === 4 ? ' stroke-dasharray="2 5"' : '') + '/>';
   }
-  var p = [], dots = "";
+  var p = [], marks = "";
   for (var i = 0; i < n; i++) {
     var a = -Math.PI/2 + i * 2*Math.PI/n, sc = scoreOf(COMPS[i].id), r = R * sc/5;
     var x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
     p.push(x.toFixed(1) + "," + y.toFixed(1));
     out += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + R*Math.cos(a)).toFixed(1) + '" y2="' +
-           (cy + R*Math.sin(a)).toFixed(1) + '" stroke="rgba(255,255,255,.05)" stroke-width="1"/>';
-    dots += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3.4" fill="' + COMPS[i].color + '"/>';
-    var lr = R + 19, lx = cx + lr*Math.cos(a), ly = cy + lr*Math.sin(a);
+           (cy + R*Math.sin(a)).toFixed(1) + '" stroke="#EFEDE7" stroke-width="1"/>';
+    marks += '<rect x="' + (x-3).toFixed(1) + '" y="' + (y-3).toFixed(1) + '" width="6" height="6" fill="#0E0E0E"/>';
+    var lr = R + 22, lx = cx + lr*Math.cos(a), ly = cy + lr*Math.sin(a);
     var anchor = Math.abs(Math.cos(a)) < 0.3 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
-    dots += '<text x="' + lx.toFixed(0) + '" y="' + (ly + 2).toFixed(0) + '" text-anchor="' + anchor +
-            '" font-size="9" letter-spacing="1.1" font-weight="700" fill="' + COMPS[i].color + '" opacity=".9">' +
-            COMPS[i].name.split(" ")[0].toUpperCase() + '</text>' +
-            '<text x="' + lx.toFixed(0) + '" y="' + (ly + 13).toFixed(0) + '" text-anchor="' + anchor +
-            '" font-size="9.5" font-weight="600" fill="#7C879E">' + sc.toFixed(1) + '</text>';
+    marks += '<text x="' + lx.toFixed(0) + '" y="' + (ly - 1).toFixed(0) + '" text-anchor="' + anchor +
+             '" font-size="9" letter-spacing="1.6" font-weight="700" fill="#8A8A8A">' +
+             COMPS[i].name.split(" ")[0].toUpperCase() + '</text>' +
+             '<text x="' + lx.toFixed(0) + '" y="' + (ly + 15).toFixed(0) + '" text-anchor="' + anchor +
+             '" font-size="15" font-weight="700" letter-spacing="-0.5" fill="#0E0E0E">' + sc.toFixed(1) + '</text>';
   }
-  out += '<polygon points="' + p.join(" ") + '" fill="url(#rg)" stroke="#FFB020" stroke-width="2" stroke-linejoin="round"/>' + dots;
-  return '<svg viewBox="-52 -10 384 302" style="width:100%;max-width:370px;display:block;margin:2px auto 0">' + out + '</svg>';
+  out += '<polygon points="' + p.join(" ") + '" fill="rgba(212,175,55,.30)" stroke="#B8912F" stroke-width="2.5"/>' + marks;
+  return '<svg viewBox="-56 -14 408 326" style="width:100%;display:block;margin:4px auto 0">' + out + '</svg>';
 }
-function ring(pct){
-  var r = 21, c = 2 * Math.PI * r;
-  return '<svg class="ring" width="52" height="52" viewBox="0 0 52 52">' +
-    '<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB020"/>' +
-    '<stop offset="1" stop-color="#FF6B4A"/></linearGradient></defs>' +
-    '<circle cx="26" cy="26" r="' + r + '" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>' +
-    '<circle cx="26" cy="26" r="' + r + '" fill="none" stroke="url(#lg)" stroke-width="4" stroke-linecap="round" ' +
-    'stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + (c * (1 - pct/100)).toFixed(1) +
-    '" transform="rotate(-90 26 26)"/>' +
-    '<text x="26" y="30" text-anchor="middle" font-size="12.5" font-weight="750" fill="#EEF1F8">' + pct + '</text></svg>';
-}
+
 function header(){
   var l = LEVELS[levelIdx()], nx = nextLevel();
   var pct = nx ? Math.max(0, Math.min(100, Math.round((state.xp - l.xp) / (nx.xp - l.xp) * 100))) : 100;
   return '<div class="eyebrow">Путь к директору по маркетингу</div>' +
-    '<div class="logo">ВЕК<span>ТОР</span></div>' +
-    '<div class="card tight"><div class="row" style="gap:14px">' + ring(pct) +
-    '<div style="flex:1;min-width:0">' +
-      '<div class="lvl">' + l.name + '</div>' +
-      '<div class="small muted" style="margin:3px 0 8px">' + state.xp + ' XP' +
-        (nx ? ' · до «' + nx.name + '» ещё ' + (nx.xp - state.xp) : ' · вершина шкалы') + '</div>' +
-      '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
-    '</div></div>' +
-    '<div class="row small" style="margin-top:13px">' +
-      '<span class="muted">Серия <b style="color:#FFC65C">' + state.streak.count + '</b> дн.</span>' +
-      '<span class="muted">На награды <b style="color:#FFC65C">' + balance() + '</b> XP</span>' +
-    '</div></div>';
+    '<div class="logo">ВЕКТОР' + ARROW + '</div><div class="rule"></div>' +
+    '<div style="padding-top:20px">' +
+      '<div class="eyebrow">Ступень ' + (levelIdx()+1) + ' из ' + LEVELS.length + '</div>' +
+      '<div class="mid" style="margin-top:7px">' + l.name + '</div>' + stairs() +
+      '<div class="row" style="align-items:flex-end">' +
+        '<div><div class="big">' + state.xp + '</div><div class="eyebrow" style="margin-top:6px">XP всего</div></div>' +
+        '<div class="small muted" style="text-align:right;max-width:52%">' +
+          (nx ? 'До «' + nx.name + '»<br/><b class="gold" style="font-size:15px">' + (nx.xp - state.xp) + ' XP</b>' : 'Вершина шкалы') +
+        '</div></div>' +
+      '<div class="bar" style="margin-top:14px"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="row small muted" style="margin-top:12px">' +
+        '<span>Серия ' + state.streak.count + ' дн.</span><span>На награды ' + balance() + ' XP</span></div>' +
+    '</div>';
+}
+
+function screenIntro(){
+  return '<div class="eyebrow">Путь к директору по маркетингу</div>' +
+    '<div class="logo huge">ВЕКТОР' + ARROW + '</div>' +
+    '<div class="rule"></div>' +
+    '<div style="padding-top:22px"><div class="mid">40 ситуаций.<br/>8 компетенций.<br/>15 минут.</div>' +
+    '<p class="body muted" style="margin:18px 0 0">Без самооценки: только выбор действия. На выходе — карта сильных и провальных зон и три приоритета на квартал.</p>' +
+    '<button class="primary wide" onclick="state.qi=0;state.answers=[];save();render()">Начать срез</button></div>' +
+    '<div class="sec"><h2>Как устроено</h2>' +
+    '<div class="kv"><span>Каждый день</span><span>3 карточки по слабым зонам</span></div>' +
+    '<div class="kv"><span>XP начисляется</span><span>за применение, не за чтение</span></div>' +
+    '<div class="kv"><span>Раз в две недели</span><span>босс-кейс без вариантов ответа</span></div>' +
+    '<div class="kv"><span>Награды</span><span>покупаете за накопленные XP</span></div></div>';
 }
 
 function screenQuiz(){
   var q = QUIZ[state.qi], c = comp(q.c);
   var pct = Math.round(state.qi / QUIZ.length * 100);
-  var h = '<div class="eyebrow">Срез компетенций</div><div class="logo">ВЕК<span>ТОР</span></div>';
-  h += '<div class="card fade"><div class="row small"><span class="dim">' + (state.qi+1) + ' / ' + QUIZ.length + '</span>' +
-       '<span class="pill" style="color:' + c.color + ';border-color:' + c.color + '33;background:' + c.color + '14">' + c.name + '</span></div>' +
-       '<div class="bar" style="margin:11px 0 20px"><i style="width:' + pct + '%"></i></div>' +
-       '<div class="qtext">' + esc(q.q) + '</div>';
+  var h = '<div class="eyebrow">Срез компетенций</div>' +
+    '<div class="logo">ВЕКТОР' + ARROW + '</div><div class="rule"></div>' +
+    '<div class="fade" style="padding-top:20px">' +
+    '<div class="row" style="align-items:flex-end">' +
+      '<div class="qnum">' + (state.qi < 9 ? "0" : "") + (state.qi+1) + '</div>' +
+      '<div style="text-align:right"><div class="tag">' + c.name + '</div>' +
+      '<div class="small muted" style="margin-top:4px">из ' + QUIZ.length + '</div></div></div>' +
+    '<div class="bar" style="margin-top:14px"><i style="width:' + pct + '%"></i></div>' +
+    '<div class="qtext">' + esc(q.q) + '</div>';
   q.o.forEach(function(o, i){
     h += '<button class="opt" onclick="answer(' + o[1] + ')"><b>' + "АБВГ".charAt(i) + '</b><span>' + esc(o[0]) + '</span></button>';
   });
-  h += '<div class="small dim" style="margin-top:12px">Отвечайте как поступаете сейчас, а не как правильно. Смысл среза — найти провалы.</div></div>';
+  h += '<div class="small muted" style="margin-top:16px">Отвечайте как поступаете сейчас, а не как правильно. Смысл среза — найти провалы.</div></div>';
   return h;
-}
-function screenIntro(){
-  return '<div class="eyebrow">Путь к директору по маркетингу</div><div class="logo">ВЕК<span>ТОР</span></div>' +
-    '<div class="card"><h2>С чего начинаем</h2>' +
-    '<p style="margin:0 0 12px">40 рабочих ситуаций по восьми компетенциям CMO. Без самооценки: только выбор действия. На выходе — радар сильных и провальных зон и приоритеты на квартал.</p>' +
-    '<div class="kv"><span class="muted">Время</span><span>15 минут</span></div>' +
-    '<div class="kv"><span class="muted">Дальше</span><span>10 минут в день</span></div>' +
-    '<div class="kv"><span class="muted">Награда за срез</span><span>50 XP</span></div>' +
-    '<button class="primary wide" onclick="state.qi=0;state.answers=[];save();render()">Начать срез</button></div>' +
-    '<div class="card"><h2>Как устроено</h2>' +
-    '<p class="small muted" style="margin:0">Каждый день приложение даёт карточку по вашей самой слабой компетенции и одно микро-действие в реальной работе. XP начисляется за применение, а не за чтение. Раз в две недели — босс-кейс: развёрнутая ситуация без вариантов ответа.</p></div>';
 }
 
 function tabToday(){
   var h = header();
   if (bossDue() && !ui.bossOpen) {
-    h += '<div class="card" style="border-color:#C792EA"><div class="row"><h2 style="margin:0;color:#C792EA">Босс-кейс доступен</h2>' +
-         '<span class="small muted">+60 XP</span></div>' +
-         '<p class="small" style="margin:10px 0 0">' + esc(currentBoss().t) + ' — развёрнутая ситуация, ответ текстом.</p>' +
-         '<button class="wide" onclick="ui.bossOpen=true;render()">Открыть кейс</button></div>';
+    h += '<div class="sec top"><div class="row"><h2 style="margin:0">Босс-кейс</h2><span class="tag">+60 XP</span></div>' +
+         '<div class="mid" style="margin-top:14px">' + esc(currentBoss().t) + '</div>' +
+         '<p class="body muted" style="margin:12px 0 0">Развёрнутая ситуация без вариантов ответа. Пишете решение, потом сверяете с эталоном.</p>' +
+         '<button class="dark wide" onclick="ui.bossOpen=true;render()">Открыть кейс</button></div>';
   }
   if (ui.bossOpen) return h + bossBlock();
 
   var w = weakest()[0];
-  h += '<div class="card"><div class="row"><h2 style="margin:0">Сегодня</h2>' +
-       '<span class="small muted">' + state.day.cards.length + ' из 3</span></div>' +
-       '<div class="small muted" style="margin:10px 0 0">Фокус дня: <span style="color:' + w.color + '">' + w.full + '</span> — сейчас самая слабая зона.</div></div>';
+  h += '<div class="sec top"><div class="row" style="align-items:flex-start">' +
+       '<div><div class="eyebrow">Фокус дня</div><div class="mid" style="margin-top:8px">' + w.full + '</div></div>' +
+       '<div class="num gold" style="text-align:right">' + scoreOf(w.id).toFixed(1) + '</div></div>' +
+       '<div class="small muted" style="margin-top:12px">Сегодня взято ' + state.day.cards.length + ' из 3 карточек.</div></div>';
 
   state.day.cards.forEach(function(t){
     var c = CARDS.find(function(x){ return x.t === t; }), k = comp(c.c), done = state.day.applied.indexOf(t) >= 0;
-    h += '<div class="card fade"><span class="pill" style="color:' + k.color + ';border-color:' + k.color + '33;background:' + k.color + '14">' + k.name + '</span>' +
+    h += '<div class="sec fade"><span class="tag">' + k.name + '</span>' +
          '<h3 class="cardTitle">' + esc(c.t) + '</h3>' +
-         '<p style="margin:0 0 14px;color:#C6CDDC">' + esc(c.b) + '</p>' +
-         '<div class="act"><div class="eyebrow" style="color:#FFB020;margin-bottom:6px">Действие на сегодня</div>' +
-         esc(c.a) + '</div>' +
-         (done ? '<div class="grow" style="margin-top:13px">✓ Применено · +25 XP в ' + k.name.toLowerCase() + '</div>'
+         '<p class="body">' + esc(c.b) + '</p>' +
+         '<div class="act"><div class="eyebrow gold">Действие на сегодня</div>' +
+         '<div style="margin-top:8px;font-size:16px;line-height:1.45">' + esc(c.a) + '</div></div>' +
+         (done ? '<div class="row" style="margin-top:18px"><span class="tag">✓ Применено</span>' +
+                 '<span class="small muted">+25 XP · ' + k.name + '</span></div>'
                : '<button class="primary wide" onclick="markApplied(\'' + esc(c.t).replace(/'/g,"\\'") + '\')">Применила в работе · +25 XP</button>') +
          '</div>';
   });
 
   if (state.day.cards.length < 3)
-    h += '<button class="primary wide" onclick="takeCard()" style="margin-bottom:14px">' +
+    h += '<button class="dark wide" onclick="takeCard()" style="margin-top:22px">' +
          (state.day.cards.length ? "Ещё карточка" : "Карточка дня · +10 XP") + '</button>';
   else
-    h += '<div class="card small muted" style="text-align:center">Дневная норма закрыта. Возвращайтесь завтра.</div>';
+    h += '<div class="sec"><div class="mid">Дневная норма закрыта.</div>' +
+         '<p class="body muted" style="margin:10px 0 0">Возвращайтесь завтра — план соберётся по новым слабым зонам.</p></div>';
   return h;
 }
 
 function bossBlock(){
   var b = currentBoss(), c = comp(b.c);
-  var h = '<div class="card"><span class="pill" style="color:' + c.color + ';border-color:' + c.color + '">' + c.name + '</span>' +
-    '<h3 style="font-size:18px;margin:10px 0 10px">' + esc(b.t) + '</h3>' +
-    '<p style="margin:0 0 14px">' + esc(b.s) + '</p>';
+  var h = '<div class="sec top"><span class="tag">' + c.name + '</span>' +
+    '<h3 class="cardTitle">' + esc(b.t) + '</h3>' +
+    '<p class="body">' + esc(b.s) + '</p>';
   if (!ui.showRef) {
-    h += '<textarea id="bossText" placeholder="Ваш разбор: решение, на что опираетесь, что говорите совету">' + esc(ui.bossText) + '</textarea>' +
+    h += '<div class="eyebrow" style="margin-top:22px">Ваш разбор</div>' +
+      '<textarea id="bossText" placeholder="Решение, на что опираетесь, что говорите совету">' + esc(ui.bossText) + '</textarea>' +
       '<button class="primary wide" onclick="submitBoss()">Сверить с эталоном</button>' +
       '<button class="ghost wide" onclick="ui.bossOpen=false;render()">Позже</button></div>';
     return h;
   }
-  h += '<div class="card tight" style="background:#0F141D"><div class="eyebrow" style="margin-bottom:8px">Ваш ответ</div>' +
-       '<div class="small">' + esc(ui.bossText).replace(/\n/g, "<br/>") + '</div></div>';
-  h += '<div class="eyebrow" style="margin:16px 0 8px">Эталон: что должно прозвучать</div><ul style="margin:0;padding-left:18px">';
-  b.ref.forEach(function(r){ h += '<li style="margin-bottom:7px">' + esc(r) + '</li>'; });
-  h += '</ul><div class="eyebrow" style="margin:16px 0 8px">Сколько пунктов вы назвали?</div><div class="row">';
-  [1,2,3,4,5].forEach(function(n){ h += '<button style="flex:1" onclick="closeBoss(' + n + ')">' + n + '</button>'; });
+  h += '<div class="act" style="margin-top:22px"><div class="eyebrow gold">Ваш ответ</div>' +
+       '<div class="small" style="margin-top:8px">' + esc(ui.bossText).replace(/\n/g, "<br/>") + '</div></div>';
+  h += '<div class="eyebrow" style="margin:26px 0 12px">Эталон: что должно прозвучать</div><ul class="ref">';
+  b.ref.forEach(function(r){ h += '<li>' + esc(r) + '</li>'; });
+  h += '</ul><div class="eyebrow" style="margin:26px 0 12px">Сколько пунктов вы назвали?</div><div class="row" style="gap:6px">';
+  [1,2,3,4,5].forEach(function(n){ h += '<button style="flex:1;padding:15px 0" onclick="closeBoss(' + n + ')">' + n + '</button>'; });
   h += '</div></div>';
   return h;
 }
 
 function tabMap(){
-  var h = header() + '<div class="card"><h2>Карта компетенций</h2>' + radar() +
-    '<div class="small muted" style="text-align:center;margin-top:6px">Планка директора по маркетингу — 4 из 5 по каждой оси</div></div>';
-  h += '<div class="card"><h2>Приоритеты квартала</h2>';
+  var weak3 = weakest().slice(0, 3).map(function(c){ return c.id; });
+  var h = header() + '<div class="sec top"><h2>Карта компетенций</h2>' + radar() +
+    '<div class="small muted" style="text-align:center;margin-top:10px">Пунктир — планка директора по маркетингу: 4 из 5</div></div>';
+  h += '<div class="sec"><h2>Приоритеты квартала</h2>';
   weakest().slice(0, 3).forEach(function(c, i){
-    h += '<div class="kv"><span><b style="color:' + c.color + '">' + (i+1) + '. ' + c.full + '</b></span>' +
-         '<span>' + scoreOf(c.id).toFixed(1) + '</span></div>';
+    h += '<div class="row" style="padding:16px 0;border-bottom:1px solid #E4E1DA;align-items:flex-start">' +
+         '<div style="display:flex;gap:16px"><span class="num gold">' + (i+1) + '</span>' +
+         '<span style="font-size:17px;font-weight:700;letter-spacing:-.02em;padding-top:8px">' + c.full + '</span></div>' +
+         '<span class="mid">' + scoreOf(c.id).toFixed(1) + '</span></div>';
   });
-  h += '<div class="small muted" style="margin-top:10px">Карточки дня приходят по этим зонам, пока они не подтянутся.</div></div>';
-  h += '<div class="card"><h2>Все компетенции</h2>';
+  h += '<div class="small muted" style="margin-top:14px">Карточки дня приходят по этим зонам, пока они не подтянутся.</div></div>';
+  h += '<div class="sec"><h2>Все компетенции</h2>';
   COMPS.forEach(function(c){
-    var s = scoreOf(c.id), g = growthOf(c.id);
-    h += '<div style="margin-bottom:12px"><div class="row small"><span>' + c.full + '</span>' +
-      '<span>' + s.toFixed(1) + (g > 0 ? ' <span class="grow">+' + g.toFixed(1) + '</span>' : '') + '</span></div>' +
-      '<div class="bar" style="margin-top:5px"><i style="width:' + (s/5*100) + '%;background:' + c.color + '"></i></div></div>';
+    var s = scoreOf(c.id), g = growthOf(c.id), hot = weak3.indexOf(c.id) >= 0;
+    h += '<div style="margin-bottom:16px"><div class="row small" style="margin-bottom:7px">' +
+      '<span style="font-size:14px">' + c.full + '</span>' +
+      '<span style="font-weight:700">' + s.toFixed(1) + (g > 0 ? ' <span class="gold">+' + g.toFixed(1) + '</span>' : '') + '</span></div>' +
+      '<div class="bar"><i style="width:' + (s/5*100) + '%;background:' + (hot ? "#D4AF37" : "#0E0E0E") + '"></i></div></div>';
   });
-  h += '<hr/><div class="small muted">Срез пройден: ' + (state.quizAt || "—") +
-       '. Рост от практики: +0.1 за применённое действие, максимум +1.5 до следующего среза.</div>' +
+  h += '<div class="hair"></div><div class="small muted">Срез пройден: ' + (state.quizAt || "—") +
+       '. Рост от практики: +0,1 за применённое действие, максимум +1,5 до следующего среза.</div>' +
        '<button class="ghost wide" onclick="restartQuiz()">Пройти срез заново</button></div>';
   if (state.quizHistory.length) {
-    h += '<div class="card"><h2>История срезов</h2>';
+    h += '<div class="sec"><h2>История срезов</h2>';
     state.quizHistory.slice().reverse().forEach(function(q){
       var avg = COMPS.reduce(function(a, c){ return a + q.scores[c.id]; }, 0) / COMPS.length;
-      h += '<div class="kv"><span class="muted">' + q.d + '</span><span>средний ' + avg.toFixed(1) + '</span></div>';
+      h += '<div class="kv"><span class="muted">' + q.d + '</span><span style="font-weight:700">' + avg.toFixed(1) + '</span></div>';
     });
     h += '</div>';
   }
@@ -790,25 +805,29 @@ function tabMap(){
 }
 
 function tabRewards(){
-  var h = header() + '<div class="card"><div class="row"><h2 style="margin:0">Магазин наград</h2>' +
-    '<span class="lvl">' + balance() + ' XP</span></div>' +
-    '<div class="small muted" style="margin:10px 0 14px">XP тратится здесь, но уровень не падает. Награда должна быть настоящей — иначе механика не работает.</div>';
+  var h = header() + '<div class="sec top"><div class="row"><h2 style="margin:0">Магазин наград</h2>' +
+    '<span class="mid gold">' + balance() + '</span></div>' +
+    '<div class="small muted" style="margin:14px 0 20px">XP тратится здесь, но уровень не падает. Награда должна быть настоящей — иначе механика не работает.</div>';
   state.rewards.forEach(function(r){
     var can = balance() >= r.cost;
-    h += '<div class="kv"><span>' + esc(r.name) + '<br/><span class="small muted">' + r.cost + ' XP</span></span>' +
-      '<span><button ' + (can ? '' : 'disabled ') + 'onclick="buy(' + r.id + ')">' + (can ? "Забрать" : "Копим") + '</button> ' +
-      '<button class="ghost" onclick="delReward(' + r.id + ')">✕</button></span></div>';
+    h += '<div class="row" style="padding:16px 0;border-bottom:1px solid #E4E1DA">' +
+      '<span style="flex:1"><span style="font-size:16px">' + esc(r.name) + '</span><br/>' +
+      '<span class="tag" style="color:' + (can ? "#8C6D1F" : "#A0A0A0") + '">' + r.cost + ' XP</span></span>' +
+      '<span style="display:flex;gap:6px">' +
+      '<button ' + (can ? 'class="primary" ' : 'disabled ') + 'style="padding:11px 14px" onclick="buy(' + r.id + ')">' +
+      (can ? "Забрать" : "Копим") + '</button>' +
+      '<button class="ghost" style="padding:11px 13px" onclick="delReward(' + r.id + ')">✕</button></span></div>';
   });
   if (ui.addReward) {
-    h += '<hr/><input type="text" id="rwName" placeholder="Название награды"/>' +
+    h += '<div style="margin-top:18px"><input type="text" id="rwName" placeholder="Название награды"/>' +
       '<input type="number" id="rwCost" placeholder="Цена в XP" style="margin-top:8px"/>' +
-      '<button class="primary wide" onclick="addReward()">Добавить</button>';
+      '<button class="primary wide" onclick="addReward()">Добавить</button></div>';
   } else {
     h += '<button class="ghost wide" onclick="ui.addReward=true;render()">+ Своя награда</button>';
   }
   h += '</div>';
   if (state.bought.length) {
-    h += '<div class="card"><h2>Получено</h2>';
+    h += '<div class="sec"><h2>Получено</h2>';
     state.bought.slice(0, 10).forEach(function(b){
       h += '<div class="kv"><span>' + esc(b.name) + '</span><span class="muted small">' + b.d + '</span></div>';
     });
@@ -820,47 +839,42 @@ function tabRewards(){
 function tabProgress(){
   var h = header();
   var appliedTotal = Object.keys(state.practice).reduce(function(a, k){ return a + state.practice[k]; }, 0);
-  h += '<div class="card"><h2>Итоги</h2>' +
-    '<div class="kv"><span class="muted">Применённых действий</span><span>' + appliedTotal + '</span></div>' +
-    '<div class="kv"><span class="muted">Босс-кейсов пройдено</span><span>' + state.bossLog.length + '</span></div>' +
-    '<div class="kv"><span class="muted">Серия</span><span>' + state.streak.count + ' дн.</span></div>' +
-    '<div class="kv"><span class="muted">Всего XP</span><span>' + state.xp + '</span></div></div>';
-  h += '<div class="card"><h2>Бейджи</h2>';
+  h += '<div class="sec top"><h2>Итоги</h2><div class="row" style="align-items:flex-start;gap:10px">' +
+    '<div class="stat"><div class="n">' + appliedTotal + '</div><div class="l">Действий</div></div>' +
+    '<div class="stat"><div class="n">' + state.bossLog.length + '</div><div class="l">Кейсов</div></div>' +
+    '<div class="stat"><div class="n">' + state.streak.count + '</div><div class="l">Серия</div></div>' +
+    '<div class="stat"><div class="n">' + state.xp + '</div><div class="l">Всего XP</div></div></div></div>';
+  h += '<div class="sec"><h2>Бейджи</h2>';
   var all = [{id:"start",name:"Точка отсчёта"},{id:"w7",name:"Неделя без пропуска"},{id:"w30",name:"Месяц дисциплины"},
              {id:"boss1",name:"Первый босс-кейс"},{id:"boss5",name:"Пять босс-кейсов"},{id:"remeasure",name:"Замер прогресса"}];
   COMPS.forEach(function(c){ all.push({id:"p_" + c.id, name:"Практик: " + c.name}); });
   all.forEach(function(b){
     var has = state.badges.some(function(x){ return x.id === b.id; });
-    h += '<span class="badge ' + (has ? 'on' : 'off') + '">' + b.name + '</span>';
+    h += '<span class="badge ' + (has ? 'on' : '') + '">' + b.name + '</span>';
   });
   h += '</div>';
   if (state.bossLog.length) {
-    h += '<div class="card"><h2>Разборы кейсов</h2>';
+    h += '<div class="sec"><h2>Разборы кейсов</h2>';
     state.bossLog.forEach(function(b){
-      h += '<div class="kv"><span>' + esc(b.t) + '<br/><span class="small muted">' + b.d + '</span></span><span>' + b.score + '/5</span></div>';
+      h += '<div class="kv"><span>' + esc(b.t) + '<br/><span class="small muted">' + b.d + '</span></span>' +
+           '<span class="mid">' + b.score + '</span></div>';
     });
     h += '</div>';
   }
-  h += '<div class="card"><h2>Журнал</h2>';
+  h += '<div class="sec"><h2>Журнал</h2>';
   if (!state.log.length) h += '<div class="small muted">Пусто</div>';
   state.log.slice(0, 20).forEach(function(l){
-    h += '<div class="kv small"><span>' + esc(l.t) + '</span><span class="dim">' + l.d + '</span></div>';
+    h += '<div class="kv small"><span>' + esc(l.t) + '</span><span class="muted">' + l.d + '</span></div>';
   });
-  h += '</div><div class="small dim" style="text-align:center;margin-bottom:10px">Вектор v' + APP_VERSION + '</div>';
+  h += '</div><div class="small muted" style="text-align:center;margin:26px 0 10px">Вектор v' + APP_VERSION + '</div>';
   return h;
 }
 
-var ICONS = {
-  today:   '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2"/>',
-  map:     '<path d="M12 3l7.5 4.5v9L12 21l-7.5-4.5v-9z"/><path d="M12 8.5l3.5 2v4l-3.5 2-3.5-2v-4z"/>',
-  rewards: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
-  progress:'<path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-7"/><path d="M21 19H3"/>'
-};
 function tabs(){
   var t = [["today","Сегодня"],["map","Карта"],["rewards","Награды"],["progress","Прогресс"]];
   return '<div class="tabs">' + t.map(function(x){
     return '<button class="' + (ui.tab === x[0] ? "on" : "") + '" onclick="ui.tab=\'' + x[0] + '\';ui.bossOpen=false;render()">' +
-           '<svg viewBox="0 0 24 24">' + ICONS[x[0]] + '</svg>' + x[1] + '</button>';
+           x[1] + '</button>';
   }).join("") + '</div>';
 }
 
