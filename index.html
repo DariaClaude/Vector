@@ -11,8 +11,9 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:#FFFFFF;color:#0E0E0E;
      font-family:"Helvetica Neue",Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
-     padding:0 0 92px;line-height:1.5;font-size:15.5px;-webkit-font-smoothing:antialiased}
-#app{max-width:640px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top)) 22px 0}
+     padding:0 0 48px;line-height:1.5;font-size:15.5px;-webkit-font-smoothing:antialiased}
+#app{max-width:640px;margin:0 auto;padding:env(safe-area-inset-top) 22px 0}
+.page{padding-top:22px}
 h1,h2,h3{margin:0;font-weight:700}
 .eyebrow{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#8A8A8A;font-weight:600}
 .logo{font-size:46px;font-weight:700;letter-spacing:-.035em;line-height:.92;margin:8px 0 0;
@@ -55,11 +56,11 @@ button:disabled{opacity:.3;cursor:default}
 .opt:hover{background:#FBF7EC}
 .opt:hover b{color:#0E0E0E}
 .tag{display:inline-block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#8C6D1F}
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:#FFFFFF;
-      border-top:1px solid #0E0E0E;padding-bottom:env(safe-area-inset-bottom)}
-.tabs button{flex:1;border:none;background:none;padding:15px 2px 14px;font-size:9.5px;letter-spacing:.16em;
-             color:#A0A0A0;border-top:3px solid transparent;margin-top:-1px}
-.tabs button.on{color:#0E0E0E;border-top-color:#D4AF37}
+.tabs{position:sticky;top:0;z-index:20;display:flex;background:#FFFFFF;
+      border-bottom:1px solid #0E0E0E;margin:0 -22px;padding:0 14px}
+.tabs button{flex:1;border:none;background:none;padding:17px 2px 14px;font-size:9.5px;letter-spacing:.16em;
+             color:#A0A0A0;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:#0E0E0E;border-bottom-color:#D4AF37}
 .kv{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:14px 0;
     border-bottom:1px solid #E4E1DA;font-size:15px}
 .kv:last-child{border-bottom:none}
@@ -74,7 +75,7 @@ textarea{width:100%;min-height:170px;background:#FFFFFF;border:1px solid #0E0E0E
 textarea:focus,input:focus{outline:none;border-color:#D4AF37}
 input[type=text],input[type=number]{background:#FFFFFF;border:1px solid #0E0E0E;border-radius:0;
          color:#0E0E0E;font-family:inherit;font-size:16px;padding:14px;width:100%}
-.toast{position:fixed;left:0;right:0;bottom:0;background:#0E0E0E;color:#FFFFFF;font-weight:700;
+.toast{position:fixed;left:0;right:0;bottom:0;padding-bottom:calc(20px + env(safe-area-inset-bottom));background:#0E0E0E;color:#FFFFFF;font-weight:700;
        font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:20px 22px;z-index:40;
        animation:up .3s cubic-bezier(.2,.9,.3,1)}
 @keyframes up{from{transform:translateY(100%)}}
@@ -93,7 +94,7 @@ ul.ref li:before{content:"";position:absolute;left:0;top:20px;width:12px;height:
 <div id="app"></div>
 
 <script>
-var APP_VERSION = "1.2";
+var APP_VERSION = "1.3";
 var LSKEY = "cmo-vector-state";   /* свой ключ: не пересекается с Реактором на том же домене */
 
 /* ─────────── КОМПЕТЕНЦИИ ─────────── */
@@ -439,7 +440,7 @@ function load(){
 function save(){ try { localStorage.setItem(LSKEY, JSON.stringify(state)); } catch(e){} }
 var state = load();
 var ui = { tab:"today", card:null, bossOpen:false, bossText:"", showRef:false, addReward:false,
-           started:false, retake:false };
+           started:false, retake:false, result:false };
 
 /* ─────────── ПРОГРЕСС И УРОВНИ ─────────── */
 function balance(){ return state.xp - state.spent; }
@@ -481,7 +482,7 @@ function finishQuiz(){
   COMPS.forEach(function(c){ sc[c.id] = Math.round((sum[c.id] / cnt[c.id]) * 10) / 10; });
   if (state.scores) state.quizHistory.push({ d:state.quizAt, scores:state.scores });
   state.scores = sc; state.quizAt = today(); state.answers = []; state.qi = 0;
-  ui.started = false; ui.retake = false;
+  ui.started = false; ui.retake = false; ui.result = true;
   addXP(50, "срез компетенций пройден");
   giveBadge("start", "Точка отсчёта");
   if (state.quizHistory.length) giveBadge("remeasure", "Замер прогресса");
@@ -608,6 +609,71 @@ function addReward(){
 function delReward(id){
   state.rewards = state.rewards.filter(function(r){ return r.id !== id; });
   save(); render();
+}
+
+/* ─────────── ЗАКЛЮЧЕНИЕ ПО СРЕЗУ ─────────── */
+/* low < 2.5 · mid 2.5–3.9 · high ≥ 4 — планка директора по маркетингу */
+var VERDICTS = {
+  strategy: {
+    low:  "Решения принимаются от каналов и бюджетов, а не от выбора рынка. Это работа руководителя отдела: план есть, отказов в нём нет.",
+    mid:  "Стратегическую рамку держите, но она пока про цели, а не про выбор. Совет отличает одно от другого мгновенно.",
+    high: "Мыслите отказами и выбором сегмента — это редкость даже среди директоров.",
+    fix:  "Раз в квартал письменно фиксируйте, от чего отдел отказывается и что за счёт этого освобождается."
+  },
+  econ: {
+    low:  "Самая дорогая зона провала: без языка денег любой бюджет защищается на эмоциях и режется первым.",
+    mid:  "Считаете стоимость лида, но не окупаемость. Совет спрашивает про второе.",
+    high: "Разговариваете в терминах маржи и окупаемости — на этом строится доверие финансового блока.",
+    fix:  "Посчитайте CAC и срок окупаемости по двум сегментам и принесите цифры на ближайшую встречу с первым лицом."
+  },
+  perf: {
+    low:  "Неожиданно для вашей роли: операционная лидогенерация просела, а это ваша ежедневная работа.",
+    mid:  "Каналы держите, но качество лида отслеживается не до сделки.",
+    high: "Сильная зона. Опирайтесь на неё, но не прячьтесь в ней от стратегических задач.",
+    fix:  "Сведите долю квалифицированных лидов по каждому каналу за месяц — это база для всех остальных решений."
+  },
+  brand: {
+    low:  "Бренд воспринимается как имидж, а не как инструмент снижения стоимости привлечения. С такой позицией бюджет на него не защитить.",
+    mid:  "Понимаете ценность бренда, но не переводите её в измеримое.",
+    high: "Связываете бренд с деньгами — редкий навык на рынке услуг.",
+    fix:  "Посмотрите динамику брендового трафика и прямых обращений за полгода: это ваш первый аргумент."
+  },
+  data: {
+    low:  "Отчётность пересказывает цифры вместо того, чтобы предлагать решения. Из-за этого вас слушают, но не слышат.",
+    mid:  "Данные собираете, но выводы тонут в количестве метрик.",
+    high: "Умеете свести массив к трём выводам — это уровень совета директоров.",
+    fix:  "Переделайте начало ближайшего отчёта: три вывода и три решения, цифры уносите в приложение."
+  },
+  product: {
+    low:  "Цена и продукт воспринимаются как чужая зона. Директор по маркетингу без влияния на цену — это руководитель рекламы.",
+    mid:  "В цену заходите, но реактивно — когда просят скидку.",
+    high: "Работаете с ценностью вместо скидок, влияете на прайс.",
+    fix:  "Соберите из последних десяти переговоров, за что клиенты готовы доплачивать, и принесите это в обсуждение цены."
+  },
+  team: {
+    low:  "Управление людьми — слабое место, а именно оно масштабирует директора. Без него вы останетесь лучшим исполнителем.",
+    mid:  "Команду ведёте, но делегируете действия, а не результат.",
+    high: "Ставите задачи через критерии приёмки и работаете с развитием — это зрелое управление.",
+    fix:  "Переформулируйте одну задачу недели в критерии результата и точку сверки в середине пути."
+  },
+  clevel: {
+    low:  "Ключевой разрыв: вы говорите на языке лидов там, где слушают язык денег и рисков. Это главная причина, по которой инициативы не проходят.",
+    mid:  "На C-level выходите, но с отчётом, а не с решением.",
+    high: "Приносите решения и предсказуемость — то, на чём и держится влияние.",
+    fix:  "Заготовьте 30 секунд для СЕО: выручка, риск, нужное решение. Проговорите вслух перед встречей."
+  }
+};
+function bandOf(v){ return v < 2.5 ? "low" : v < 4 ? "mid" : "high"; }
+function avgScore(){
+  return COMPS.reduce(function(a, c){ return a + scoreOf(c.id); }, 0) / COMPS.length;
+}
+function overallVerdict(){
+  var a = avgScore();
+  if (a < 2.5) return "Разрыв с планкой директора по маркетингу большой и системный. Это не приговор: провалы сосредоточены в управленческом контуре, а он набирается быстрее операционного — при условии ежедневной практики, а не чтения.";
+  if (a < 3.2) return "База руководителя отдела крепкая, управленческий контур отстаёт. Именно он отделяет вас от роли директора — операционные навыки уже не решают.";
+  if (a < 3.7) return "Вы в переходной зоне: половина компетенций на уровне директора, половина держится на прошлой роли. Дотягивать нужно точечно, три зоны ниже.";
+  if (a < 4.2) return "Близко к планке. Дальше решает не объём знаний, а регулярность: доверие на уровне совета набирается на совпадении обещанного и сделанного.";
+  return "Соответствуете планке директора по маркетингу по большинству осей. Смысл дальнейшей работы — удерживать уровень и закрывать оставшиеся провалы, они видны на радаре.";
 }
 
 /* ─────────── ИНТЕРФЕЙС ─────────── */
@@ -794,6 +860,7 @@ function tabMap(){
   });
   h += '<div class="hair"></div><div class="small muted">Срез пройден: ' + (state.quizAt || "—") +
        '. Рост от практики: +0,1 за применённое действие, максимум +1,5 до следующего среза.</div>' +
+       '<button class="dark wide" onclick="ui.result=true;render()">Открыть заключение</button>' +
        '<button class="ghost wide" onclick="restartQuiz()">Пройти срез заново</button></div>';
   if (state.quizHistory.length) {
     h += '<div class="sec"><h2>История срезов</h2>';
@@ -872,6 +939,55 @@ function tabProgress(){
   return h;
 }
 
+function screenResult(){
+  var a = avgScore(), weak = weakest().slice(0, 3), strong = weakest().slice().reverse().slice(0, 2);
+  var h = '<div class="eyebrow">Срез компетенций · ' + (state.quizAt || today()) + '</div>' +
+    '<div class="logo">ВЕКТОР' + ARROW + '</div><div class="rule"></div>';
+
+  h += '<div class="fade" style="padding-top:22px"><div class="row" style="align-items:flex-end">' +
+       '<div><div class="big" style="font-size:76px">' + a.toFixed(1) + '</div>' +
+       '<div class="eyebrow" style="margin-top:8px">Средний балл из 5</div></div>' +
+       '<div style="text-align:right"><div class="mid gold">' + (a >= 4 ? "на планке" : "ниже планки") + '</div>' +
+       '<div class="small muted" style="margin-top:4px">директора — 4,0</div></div></div>' +
+       '<div class="bar" style="margin-top:16px"><i style="width:' + Math.round(a/5*100) + '%"></i></div></div>';
+
+  h += '<div class="sec"><h2>Заключение</h2><p class="body" style="margin:0;font-size:17px">' +
+       overallVerdict() + '</p></div>';
+
+  h += '<div class="sec"><h2>Карта</h2>' + radar() + '</div>';
+
+  h += '<div class="sec"><h2>Три провала — сюда пойдут карточки</h2>';
+  weak.forEach(function(c, i){
+    var v = VERDICTS[c.id], s = scoreOf(c.id);
+    h += '<div style="padding:20px 0;border-bottom:1px solid #E4E1DA">' +
+      '<div class="row" style="align-items:flex-start"><div style="display:flex;gap:16px">' +
+      '<span class="num gold">' + (i+1) + '</span>' +
+      '<span style="font-size:18px;font-weight:700;letter-spacing:-.02em;padding-top:7px">' + c.full + '</span></div>' +
+      '<span class="mid">' + s.toFixed(1) + '</span></div>' +
+      '<p class="body" style="margin:12px 0 0">' + v[bandOf(s)] + '</p>' +
+      '<div class="act" style="margin-top:14px"><div class="eyebrow gold">С чего начать</div>' +
+      '<div style="margin-top:8px;font-size:16px;line-height:1.45">' + v.fix + '</div></div></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec"><h2>На что опираться</h2>';
+  strong.forEach(function(c){
+    var s = scoreOf(c.id);
+    h += '<div style="padding:16px 0;border-bottom:1px solid #E4E1DA">' +
+      '<div class="row"><span style="font-size:17px;font-weight:700;letter-spacing:-.02em">' + c.full + '</span>' +
+      '<span class="mid">' + s.toFixed(1) + '</span></div>' +
+      '<p class="body muted" style="margin:8px 0 0">' + VERDICTS[c.id][bandOf(s)] + '</p></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec"><h2>Что дальше</h2>' +
+    '<div class="kv"><span>Каждый день</span><span>3 карточки по провалам</span></div>' +
+    '<div class="kv"><span>Через две недели</span><span>первый босс-кейс</span></div>' +
+    '<div class="kv"><span>Через квартал</span><span>повторный срез и сравнение</span></div>' +
+    '<button class="primary wide" onclick="ui.result=false;ui.tab=\'today\';render()">Перейти к плану</button></div>';
+  return h;
+}
+
 function tabs(){
   var t = [["today","Сегодня"],["map","Карта"],["rewards","Награды"],["progress","Прогресс"]];
   return '<div class="tabs">' + t.map(function(x){
@@ -884,13 +1000,18 @@ function render(){
   var h;
   var inQuiz = ui.retake || (!state.scores && (ui.started || state.qi > 0 || state.answers.length > 0));
   if (inQuiz) h = screenQuiz();
+  else if (ui.result && state.scores) h = screenResult();
   else if (!state.scores) h = screenIntro();
   else {
     newDayIfNeeded();
     h = ui.tab === "map" ? tabMap() : ui.tab === "rewards" ? tabRewards() :
         ui.tab === "progress" ? tabProgress() : tabToday();
-    h += tabs();
+    h = tabs() + '<div class="page">' + h + '</div>';
+    document.getElementById("app").innerHTML = h;
+    window.scrollTo(0, 0);
+    return;
   }
+  h = '<div class="page">' + h + '</div>';
   document.getElementById("app").innerHTML = h;
 }
 
